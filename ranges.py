@@ -1,3 +1,5 @@
+from datetime import datetime
+
 
 def merge_ranges(list_of_ranges):
     merged_ranges = []
@@ -16,3 +18,14 @@ def merge_ranges(list_of_ranges):
                 range_start, range_end = start, end
         merged_ranges.append((range_start, range_end))
     return merged_ranges
+
+
+def replace_none(ranges):
+    ret = []
+    for (start, end) in ranges:
+        if start is None:
+            start = datetime.min
+        if end is None:
+            end = datetime.max
+        ret.append((start, end))
+    return ret

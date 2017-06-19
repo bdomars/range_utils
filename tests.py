@@ -1,6 +1,8 @@
 import unittest
 import ranges
 
+from datetime import datetime
+
 
 class MergeTests(unittest.TestCase):
 
@@ -38,6 +40,16 @@ class MergeTests(unittest.TestCase):
         list_of_ranges = [(None, 2), (2, None), (6, 9)]
         merged_ranges = ranges.merge_ranges(list_of_ranges)
         self.assertEqual(merged_ranges, [(None, None)])
+
+    def test_merge_ranges_dt(self):
+        list_of_ranges = [(datetime(1990, 2, 1), datetime(1990, 2, 15)), (datetime(1990, 2, 15), datetime(1990, 2, 27))]
+        merged_ranges = ranges.merge_ranges(list_of_ranges)
+        self.assertEqual(merged_ranges, [(datetime(1990, 2, 1), datetime(1990, 2, 27))])
+
+    def test_merge_ranges_dt_with_none(self):
+        list_of_ranges = [(None, datetime(1990, 2, 15)), (datetime(1990, 2, 15), None)]
+        merged_ranges = ranges.merge_ranges(ranges.replace_none(list_of_ranges))
+        self.assertEqual(merged_ranges, [(datetime.min, datetime.max)])
 
 
 if __name__ == '__main__':
