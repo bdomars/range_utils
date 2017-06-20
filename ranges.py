@@ -7,6 +7,10 @@ class Range(object):
 
     If end is None it means that the end is the absolute end and is always
     bigger than anything other than None.
+
+    TODO:
+        - using __cmp__() is deprecated in Python 3, should implement the new
+          fancy comparisons for that
     """
 
     def __init__(self, start, end):
