@@ -48,7 +48,7 @@ class MergeTests(unittest.TestCase):
 
     def test_merge_ranges_dt_with_none(self):
         list_of_ranges = [(None, datetime(1990, 2, 15)), (datetime(1990, 2, 15), None)]
-        merged_ranges = ranges.merge_ranges(ranges.replace_none(list_of_ranges))
+        merged_ranges = ranges.merge_ranges(list_of_ranges, datetime=True)
         self.assertEqual(merged_ranges, [(datetime.min, datetime.max)])
 
 
