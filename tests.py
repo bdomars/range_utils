@@ -63,6 +63,16 @@ class OverlapTests(unittest.TestCase):
         self.assertFalse(ranges.check_overlap([(1, 4), (4, 8)]))
         self.assertFalse(ranges.check_overlap([(1, 4), (6, 9), (4, 6)]))
 
+    def test_overlaps_with_none(self):
+        self.assertTrue(ranges.check_overlap([(None, 4), (3, None)]))
+        self.assertTrue(ranges.check_overlap([(1, 4), (None, 6), (1, None)]))
+        self.assertTrue(ranges.check_overlap([(1, 4), (5, 8), (None, None)]))
+
+    def test_no_overlaps_with_none(self):
+        self.assertFalse(ranges.check_overlap([(None, 4), (4, None)]))
+        self.assertFalse(ranges.check_overlap([(None, 4), (6, None), (4, 6)]))
+        self.assertFalse(ranges.check_overlap([(None, None)]))
+
 
 if __name__ == '__main__':
     unittest.main()
