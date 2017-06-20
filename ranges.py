@@ -83,3 +83,18 @@ def merge_ranges(list_of_ranges):
         merged_ranges.append((range_start, range_end))
 
     return merged_ranges
+
+
+def check_overlap(list_of_ranges):
+
+    list_of_ranges = [Range(start, end) for start, end in list_of_ranges]
+
+    if len(list_of_ranges) > 0:
+        sorted_list = sorted(list_of_ranges)
+        while len(sorted_list):
+            cur_start, cur_end = sorted_list.pop(0)
+            for other_start, other_end in sorted_list:
+                if cur_end > other_start:
+                    return True
+
+        return False

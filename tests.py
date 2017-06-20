@@ -52,5 +52,17 @@ class MergeTests(unittest.TestCase):
         self.assertEqual(merged_ranges, [(None, None)])
 
 
+class OverlapTests(unittest.TestCase):
+
+    def test_overlaps(self):
+        self.assertTrue(ranges.check_overlap([(1, 4), (3, 6)]))
+        self.assertTrue(ranges.check_overlap([(1, 4), (4, 6), (1, 5)]))
+        self.assertTrue(ranges.check_overlap([(1, 4), (5, 8), (0, 3)]))
+
+    def test_no_overlaps(self):
+        self.assertFalse(ranges.check_overlap([(1, 4), (4, 8)]))
+        self.assertFalse(ranges.check_overlap([(1, 4), (6, 9), (4, 6)]))
+
+
 if __name__ == '__main__':
     unittest.main()
