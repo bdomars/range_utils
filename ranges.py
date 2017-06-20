@@ -1,5 +1,13 @@
 
 class Range(object):
+    """This object defines the meaning of None for start and end in a range.
+
+    If start is None it means that the start is the absolute start and
+    is always smaller than anything other than None.
+
+    If end is None it means that the end is the absolute end and is always
+    bigger than anything other than None.
+    """
 
     def __init__(self, start, end):
         self.start = start
