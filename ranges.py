@@ -1,4 +1,7 @@
+import functools
 
+
+@functools.total_ordering
 class Range(object):
     """This object defines the meaning of None for start and end in a range.
 
@@ -7,10 +10,6 @@ class Range(object):
 
     If end is None it means that the end is the absolute end and is always
     bigger than anything other than None.
-
-    TODO:
-        - using __cmp__() is deprecated in Python 3, should implement the new
-          fancy comparisons for that
     """
 
     def __init__(self, start, end):
@@ -18,42 +17,18 @@ class Range(object):
         self.end = end
 
     def __iter__(self):
-        yield self.start
-        yield self.end
+        return (self.start, self.end)
 
-    def __cmp__(self, other):
-        start_cmp = self._cmp_start(other)
-        if start_cmp == 0:
-            return self._cmp_end(other)
-        return start_cmp
+    def __eq__(self, other):
+        if self.start == other.start:
+            return self.end == other.end
+        return False
 
-    def _cmp_start(self, other):
-        if self.start is None and other.start is None:
-            return 0
-        elif self.start is None and other.start is not None:
-            return -1
-        elif self.start is not None and other.start is None:
-            return 1
-        elif self.start > other.start:
-            return 1
-        elif self.start < other.start:
-            return -1
-        else:
-            return 0
-
-    def _cmp_end(self, other):
-        if self.end is None and other.end is None:
-            return 0
-        elif self.end is None and other.end is not None:
-            return 1
-        elif self.end is not None and other.end is None:
-            return -1
-        elif self.end > other.end:
-            return 1
-        elif self.end < other.end:
-            return -1
-        else:
-            return 0
+    def __lt__(self, other):
+        if other.start is not None and (self.start < other.start or self.start is None):
+            if other.end is None or (self.end < other.end or self.end is not None):
+                return True
+        return False
 
     def __repr__(self):
         return "<Range: {} to {}>".format(self.start, self.end)
