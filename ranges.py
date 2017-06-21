@@ -1,5 +1,4 @@
 import functools
-import traceback
 
 
 @functools.total_ordering
