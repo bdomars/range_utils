@@ -52,7 +52,7 @@ class MergeTests(unittest.TestCase):
         self.assertEqual(merged_ranges, [(None, None)])
 
     def test_merge_ranges_regression_1(self):
-        list_of_ranges = [(None, datetime(1990, 2, 10)), (datetime(1990, 2, 15), None), (datetime(1990, 2, 15), datetime(1990, 2, 20))]
+        list_of_ranges = [(None, datetime(1990, 2, 10)), (datetime(1990, 2, 15), None), (datetime(1990, 2, 10), datetime(1990, 2, 20))]
         merged_ranges = merge_ranges(list_of_ranges)
         self.assertEqual(merged_ranges, [(None, None)])
 
