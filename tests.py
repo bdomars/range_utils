@@ -84,6 +84,10 @@ class ComparisonTests(unittest.TestCase):
         self.assertLess(Range(None, None), Range(1, 3))
         self.assertLess(Range(1, 2), Range(1, 3))
         self.assertLess(Range(None, 5), Range(4, None))
+        self.assertLess(Range(2, 5), Range(2, None))
+        self.assertLess(Range(None, 5), Range(2, 5))
+        self.assertLess(Range(3, 5), Range(4, None))
+        self.assertLess(Range(3, 5), Range(3, None))
 
 
 if __name__ == '__main__':
