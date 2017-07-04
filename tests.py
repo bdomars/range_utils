@@ -67,6 +67,24 @@ class MergeTests(unittest.TestCase):
         merged_ranges = merge_ranges(list_of_ranges)
         self.assertEqual(merged_ranges, [(None, None)])
 
+    def test_merge_ranges_regression_2(self):
+        list_of_ranges = [
+            (datetime(2015, 12, 14), datetime(2015, 12, 24)),
+            (datetime(2015, 12, 24), datetime(2016, 1, 3)),
+            (datetime(2016, 1, 3), datetime(2016, 3, 25)),
+            (datetime(2016, 3, 25), datetime(2016, 3, 29)),
+            (datetime(2016, 3, 29), datetime(2016, 12, 11)),
+            (datetime(2016, 12, 11), datetime(2016, 12, 25)),
+            (datetime(2016, 12, 25), datetime(2017, 1, 2)),
+            (datetime(2017, 1, 2), datetime(2017, 4, 14)),
+            (datetime(2017, 4, 14), datetime(2017, 4, 20)),
+            (datetime(2017, 4, 20), None),
+            (None, datetime(2015, 12, 14)),
+        ]
+
+        merged_ranges = merge_ranges(list_of_ranges)
+        self.assertEqual(merged_ranges, [(None, None)])
+
 
 class OverlapTests(unittest.TestCase):
 
