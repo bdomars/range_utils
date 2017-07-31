@@ -45,7 +45,7 @@ def merge_ranges(list_of_ranges):
         sorted_list = sorted(list_of_ranges, key=lambda x: Range(x[0], x[1]))
         range_start, range_end = sorted_list[0]
         for start, end in sorted_list:
-            if start is None or start <= range_end:
+            if start is None or range_end is None or start <= range_end:
                 if end is None:
                     range_end = None
                     break
