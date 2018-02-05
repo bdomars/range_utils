@@ -116,6 +116,17 @@ class OverlapTests(unittest.TestCase):
         self.assertFalse(check_overlap([(None, 4), (6, None), (4, 6)]))
         self.assertFalse(check_overlap([(None, None)]))
 
+    def test_none_problem(self):
+        self.assertTrue(check_overlap([(1, None), (None, None)]))
+        self.assertTrue(check_overlap([(None, None), (1, None)]))
+
+    def test_none_problem_with_dates(self):
+        self.assertTrue(check_overlap([(datetime(2017, 6, 8), None), (None, None)]))
+        self.assertTrue(check_overlap([(None, None), (datetime(2017, 6, 8), None)]))
+
+    def test_only_none(self):
+        self.assertTrue(check_overlap([(None, None), (None, None)]))
+
 
 class ComparisonTests(unittest.TestCase):
 
