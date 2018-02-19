@@ -117,7 +117,7 @@ class MergeTests(unittest.TestCase):
                         ]
 
         merged_ranges = merge_ranges(list_of_ranges)
-        self.assertEqual(merge_ranges, [None, None])
+        self.assertEqual(merged_ranges, [(None, None)])
 
 
 class OverlapTests(unittest.TestCase):
