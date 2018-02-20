@@ -1,5 +1,7 @@
 import unittest
-from ranges import Range, merge_ranges, check_overlap
+
+from range_utils import merge_ranges, check_overlap
+from range_utils.range import Range
 
 from datetime import datetime
 

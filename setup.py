@@ -9,4 +9,6 @@ setup(name='range_utils',
       author_email='bdomars@abo.fi',
       license='MIT',
       packages=['range_utils'],
-      zip_safe=False)
+      zip_safe=False,
+      test_suite='nose.collector',
+      tests_require=['nose'])
