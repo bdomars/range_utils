@@ -27,7 +27,7 @@ class Range(object):
     def __lt__(self, other):
 
         if other.start is not None and (self.start is None or self.start <= other.start):
-            if other.end is None or self.start is not None or (self.end < other.end or self.end is not None):
+            if other.end is None or self.start is not None or self.end is None or (self.end is not None or self.end < other.end):
                 return True
 
         return False
