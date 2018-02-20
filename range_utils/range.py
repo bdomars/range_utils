@@ -1,3 +1,4 @@
+import functools
 
 @functools.total_ordering
 class Range(object):

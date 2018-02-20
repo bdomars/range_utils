@@ -1,5 +1,3 @@
-import functools
-
 from range import Range
 
 def merge_ranges(list_of_ranges):
