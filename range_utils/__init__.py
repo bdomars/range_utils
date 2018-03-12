@@ -1,4 +1,4 @@
-from range import Range
+from .range import Range
 
 def merge_ranges(list_of_ranges):
     merged_ranges = []
