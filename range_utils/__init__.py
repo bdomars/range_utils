@@ -25,6 +25,6 @@ def check_overlap(list_of_ranges):
         while len(sorted_list):
             cur_start, cur_end = sorted_list.pop(0)
             for other_start, other_end in sorted_list:
-                if cur_end is None or cur_end > other_start:
+                if cur_end is None or other_start is None or cur_end > other_start:
                     return True
         return False
