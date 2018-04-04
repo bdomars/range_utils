@@ -122,6 +122,7 @@ class MergeTests(unittest.TestCase):
         self.assertEqual(merged_ranges, [(None, None)])
 
 
+
 class OverlapTests(unittest.TestCase):
 
     def test_overlaps(self):
@@ -153,6 +154,30 @@ class OverlapTests(unittest.TestCase):
 
     def test_only_none(self):
         self.assertTrue(check_overlap([(None, None), (None, None)]))
+
+    def test_regression_1(self):
+
+        list_of_ranges = [
+            (None, datetime(2016, 3, 25)),
+            (datetime(2016, 3, 25), datetime(2016, 3, 28)),
+            (datetime(2016, 12, 19), datetime(2016, 12, 26)),
+            (datetime(2016, 12, 8), datetime(2016, 12, 19)),
+            (datetime(2016, 12, 26), datetime(2017, 1, 2)),
+            (datetime(2017, 1, 2), datetime(2017, 4, 14)),
+            (datetime(2016, 3, 28), datetime(2016, 11, 26)),
+            (datetime(2016, 11, 26), datetime(2016, 12, 8)),
+            (datetime(2017, 4, 14), datetime(2017, 4, 20)),
+            (datetime(2017, 4, 20), datetime(2017, 12, 2)),
+            (datetime(2017, 12, 2), datetime(2017, 12, 11)),
+            (datetime(2017, 12, 11), datetime(2017, 12, 25)),
+            (None,None),
+            (datetime(2017, 12, 25), datetime(2018, 1, 1)),
+            (datetime(2018, 1, 1), datetime(2018, 1, 2)),
+            (datetime(2018, 1, 2), None),
+        ]
+
+        res = check_overlap(list_of_ranges)
+        self.assertEqual(res, True)
 
 
 class ComparisonTests(unittest.TestCase):
