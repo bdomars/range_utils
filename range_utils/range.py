@@ -16,7 +16,7 @@ class Range(object):
         self.end = end
 
     def __iter__(self):
-        return (self.start, self.end)
+        return iter((self.start, self.end))
 
     def __eq__(self, other):
         if self.start == other.start:
